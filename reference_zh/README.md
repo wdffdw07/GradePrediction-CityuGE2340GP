@@ -2,14 +2,22 @@
 
 本目录供你个人查阅。组员从上级目录的英文 [README](../README.md) 接手。
 
+## 项目 README
+
+- [English](../README.md)
+- [简体中文](README.zh-CN.md)
+- [繁體中文（香港）](README.zh-HK.md)
+
+两份中文 README 均翻译自当前英文首页，包含资料结构、实验运行方法及演示入口。
+
 ## 中英文对照
 
 | 内容 | 中文参考 | 英文主文档 |
 |---|---|---|
-| 分析报告 v5 | [中文 Markdown](GE2340_Data_Analysis_ZH_v5.md) | [英文 Markdown](../GE2340_Data_Analysis_EN_v5.md) |
+| 分析报告 | [中文 Markdown v5（历史版本）](GE2340_Data_Analysis_ZH_v5.md) | [当前英文 Markdown v7](../GE2340_Data_Analysis_EN_v7.md) |
 | 技术交接说明 | [中文交接参考](HANDOFF_ZH.md) | [英文交接说明](../docs/HANDOFF.md) |
 
-中文版报告按润色后的英文版逐段同步，章节、表格和引用相互对应。需要修改报告时使用 Markdown 文件。
+中文报告仍为 v5，尚未同步英文 v7 的新增内容。需要修改当前报告时，使用英文 v7 Markdown 文件。
 
 ## 文件与结果查询
 
@@ -20,9 +28,9 @@
 ## 当前 PDF
 
 - [中文分析报告 v5 PDF](GE2340_Data_Analysis_ZH_v5.pdf)
-- [英文分析报告 v5 PDF](../GE2340_Data_Analysis_EN_v5.pdf)
+- [英文分析报告 v7 PDF](../GE2340_Data_Analysis_EN_v7.pdf)
 
-PDF 已按当前中英文 Markdown 分别重新生成。后续修改 Markdown 后，需同步更新对应 PDF。
+中文 PDF 对应中文 v5 Markdown；英文 PDF 对应当前英文 v7 Markdown。后续修改 Markdown 后，需同步更新对应 PDF。
 
 ## 演示程序与网页（补充）
 

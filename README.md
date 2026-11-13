@@ -1,5 +1,7 @@
 # GE2340 Data Analysis and Baseline Package
 
+**English** | [简体中文](reference_zh/README.zh-CN.md) | [繁體中文（香港）](reference_zh/README.zh-HK.md)
+
 This package contains the shared data, completed baseline experiments and materials for the team report. The shared data package is version 3; the current English analysis report is version 7. Documentation updated on 13 November 2026.
 
 ## Reading order
