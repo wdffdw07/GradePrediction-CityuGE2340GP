@@ -1,16 +1,16 @@
 # GE2340 Data Analysis and Baseline Package
 
-This package contains the shared data, completed baseline experiments and materials for the team report. The data and code are version 3; the analysis report is version 5. Documentation updated on 6 November 2026.
+This package contains the shared data, completed baseline experiments and materials for the team report. The shared data package is version 3; the current English analysis report is version 7. Documentation updated on 13 November 2026.
 
 ## Reading order
 
 | Purpose | Read | Then use |
 |---|---|---|
 | Continue the model experiments | [Technical handoff](docs/HANDOFF.md) | `outputs/processed/`, `config/grade_bands.json`, `src/load_data.py` |
-| Write the report | [English analysis report v6](GE2340_Data_Analysis_EN_v6.md) | [Technical findings](docs/FINDINGS.md), result CSVs and original figures |
-| Prepare comparisons and slides | [English analysis report v6](GE2340_Data_Analysis_EN_v6.md) | [Figure mapping](docs/FINDINGS.md#figure-guide) and `outputs/figures/` |
+| Write the report | [English analysis report v7](GE2340_Data_Analysis_EN_v7.md) | [Technical findings](docs/FINDINGS.md), result CSVs and original figures |
+| Prepare comparisons and slides | [English analysis report v7](GE2340_Data_Analysis_EN_v7.md) | [Figure mapping](docs/FINDINGS.md#figure-guide) and `outputs/figures/` |
 
-Use the Markdown report for edits and team writing. The PDF is generated from the current v6 Markdown report; update both formats when revising the report. Team documentation is in English; the corresponding Chinese report and personal reference materials are in [reference_zh/](reference_zh/). (Note: The Chinese report is not updated beyond v5.)
+Use the Markdown report for edits and team writing. The [English PDF v7](GE2340_Data_Analysis_EN_v7.pdf) is the reading copy generated from the current v7 Markdown report; regenerate it after report revisions. Team documentation is in English. The Chinese report in [reference_zh/](reference_zh/) remains at v5 and is a personal reference for the owner.
 
 ## Current state
 
@@ -24,8 +24,8 @@ Use the existing 1,200/400/400 train/validation/test split and preprocessing par
 
 | Location | Contents |
 |---|---|
-| [Editable English report](GE2340_Data_Analysis_EN_v6.md) | Edited Markdown working copy based on v6 |
-| [English PDF v6](GE2340_Data_Analysis_EN_v6.pdf) | Reading copy generated from the current Markdown report |
+| [Editable English report](GE2340_Data_Analysis_EN_v7.md) | Current v7 Markdown source for team writing |
+| [English PDF v7](GE2340_Data_Analysis_EN_v7.pdf) | Reading copy generated from the current Markdown report |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | Inputs, fixed experiment settings and handoff files |
 | [docs/FINDINGS.md](docs/FINDINGS.md) | Existing results, interpretation and figure mapping |
 | [docs/PHASE1_VERIFICATION.md](docs/PHASE1_VERIFICATION.md) | Historical verification of the submitted Phase 1 method |
@@ -34,7 +34,7 @@ Use the existing 1,200/400/400 train/validation/test split and preprocessing par
 | `src/` | Pipeline and data-loading interface |
 | [analysis.ipynb](analysis.ipynb) | Notebook entry point into the pipeline |
 | `outputs/processed/` | Raw/scaled split data, labels and preprocessing parameters |
-| `outputs/figures/` | Five figures, each in PNG and PDF formats |
+| `outputs/figures/` | Eight figures, each in PNG and PDF formats |
 | `outputs/` | Metrics, predictions, model parameters, quality checks and existing run records |
 | `tests/` | Pipeline checks |
 | [requirements.txt](requirements.txt) | Python dependency versions |
@@ -42,7 +42,7 @@ Use the existing 1,200/400/400 train/validation/test split and preprocessing par
 | [MANIFEST_SHA256.json](MANIFEST_SHA256.json) | File checksums for project sources and supplied data, excluding this manifest, installed dependencies and desktop test output |
 | `reference_zh/` | Chinese report, handoff reference and file index for the owner |
 
-References to v2 classification outputs in report Section 6 identify when those results were introduced. Those outputs are included in the current v3 package. Metric CSVs retain full precision; the report presents rounded values.
+References to v2 classification outputs in report Section 5 identify when those results were introduced. Those outputs are included in the current v3 package. Metric CSVs retain full precision; the report presents rounded values.
 
 ## Run the existing pipeline
 
