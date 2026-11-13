@@ -1,0 +1,48 @@
+name: Deploy browser demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/demo/**'
+      - 'app/build_web.py'
+      - 'app/desktop/package.json'
+      - 'DATA_LICENSE.md'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify model predictions
+        run: |
+          node app/demo/test-models.cjs
+          node app/demo/test-classifier.cjs
+      - name: Build static site and offline package
+        run: python3 app/build_web.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: app/dist/site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

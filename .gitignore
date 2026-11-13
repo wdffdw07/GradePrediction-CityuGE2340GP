@@ -11,3 +11,4 @@ builder-effective-config.yaml
 *.blockmap
 .DS_Store
 Thumbs.db
+app/dist/

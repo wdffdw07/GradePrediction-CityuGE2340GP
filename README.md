@@ -76,7 +76,9 @@ ge2340_data_package_v3/
 └── reference_zh/   # Chinese reference materials for the owner
 ```
 
-**For presentations:** download the [Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Windows.exe) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0) and double-click it. It includes the runtime and model and works offline. Alternatively, open [app/demo/index.html](app/demo/index.html) in a browser. The previous root-level `demo/` path has moved to `app/demo/`.
+**Browser access (macOS, Windows and Linux):** [Open the online demo](https://wdffdw07.github.io/GradePrediction-CityuGE2340GP/), or download the [offline web ZIP](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Offline-Web.zip) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0). Extract the ZIP completely and open `index.html` in a browser. Keep the extracted files together. Both models run locally in the browser; the offline package needs no installation, server or internet connection for predictions.
+
+**Windows desktop app:** download the [Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Windows.exe) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0) and double-click it. It includes the runtime and model and works offline. Alternatively, open [app/demo/index.html](app/demo/index.html) in a browser. The previous root-level `demo/` path has moved to `app/demo/`.
 
 **For interface or classifier work:** edit `app/demo/`. The current app defaults to Jeffrey's classifier, showing a relative group and class probabilities. Linear regression remains available with its estimated position in the training set. See the [classifier integration guide](app/demo/README.md#jeffreys-grade-classifier) for parameter export and verification.
 
@@ -98,5 +100,7 @@ python app/demo/export_classifier.py
 node app/demo/test-models.cjs
 node app/demo/test-classifier.cjs
 ```
+
+The online demo is published from `main` whenever its application files change. To rebuild the offline ZIP and Pages files, run `python app/build_web.py`; generated files go to the ignored `app/dist/` directory.
 
 See [app/README.md](app/README.md) for the application overview and [app/desktop/README.md](app/desktop/README.md) for packaging details.

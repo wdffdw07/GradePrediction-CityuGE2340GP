@@ -2,6 +2,8 @@
 
 Open [index.html](index.html) in a browser to demonstrate linear regression and Jeffrey's grade classifier. The page runs locally, without installation, a server or an internet connection. Keep the files in this directory together when copying the demo.
 
+For sharing, use the [online demo](https://wdffdw07.github.io/GradePrediction-CityuGE2340GP/) or the [offline web ZIP](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Offline-Web.zip). Extract the ZIP before opening `index.html`. See the [web publishing guide](../README.md#publish-the-web-demo-and-offline-package) for rebuilding and deployment.
+
 A Windows portable build with a custom GE2340 title bar and icon is also available. See the [desktop app guide](../desktop/README.md) for running and rebuilding it.
 
 ## Using the demo
