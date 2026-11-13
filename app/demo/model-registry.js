@@ -48,7 +48,10 @@
     const probs = result && result.probabilities;
     if (!Array.isArray(probs) || probs.length !== model.classLabels.length || probs.some(x => !Number.isFinite(x) || x < 0 || x > 1) || Math.abs(probs.reduce((a, b) => a + b, 0) - 1) > 1e-6) throw new Error('The classifier returned invalid probabilities.');
     const best = probs.indexOf(Math.max(...probs));
-    return { label: model.classLabels[best], probabilities: probs };
+    const label = result.label === undefined ? model.classLabels[best] : result.label;
+    const chosen = model.classLabels.indexOf(label);
+    if (chosen < 0 || probs[chosen] < probs[best] - 1e-12) throw new Error('The classifier returned an inconsistent label.');
+    return { label, probabilities: probs };
   }
   root.GE2340 = { fields, models, register, validateInput, predict, relativeStanding };
   if (typeof module !== 'undefined') module.exports = root.GE2340;

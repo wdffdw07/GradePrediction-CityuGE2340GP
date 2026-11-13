@@ -16,7 +16,7 @@ Use the Markdown report for edits and team writing. The PDF is generated from th
 
 The package includes completed data quality checks, fixed splits, scaling fitted on training data, training-set EDA, OLS regression, the training-mean baseline, relative grade labels and the training-majority classification baseline.
 
-Softmax is the next required model experiment. The small neural network is an optional extension. Use the [technical handoff](docs/HANDOFF.md) for inputs, targets, comparison rules and deliverables.
+Jeffrey's SGD classifier is implemented and integrated into the application. The small neural network is an optional extension. Use the [technical handoff](docs/HANDOFF.md) for inputs, targets, comparison rules and deliverables.
 
 Use the existing 1,200/400/400 train/validation/test split and preprocessing parameters. Match records by `row_id`. The classifier predicts project-defined relative grade bands; the optional neural network predicts continuous `Grades`.
 
@@ -60,13 +60,13 @@ Retain dataset attribution and [DATA_LICENSE.md](DATA_LICENSE.md) when using the
 
 ## Appendix — Demonstration app and website
 
-The browser demo and Windows desktop app are complete for the existing linear regression model. This section covers presentation use and application development.
+The browser demo and Windows desktop app include linear regression and Jeffrey's grade classifier, with model switching and offline inference. This section covers presentation use and application development.
 
 The application source is grouped under `app/`. The ready-to-run Windows executable is in the package root. The executable is stored with Git LFS; when cloning the repository, install Git LFS and run `git lfs pull` to download it.
 
 ```text
 ge2340_data_package_v3/
-├── GE2340-Model-Explorer-1.0.0-Windows.exe
+├── GE2340-Model-Explorer-1.1.0-Windows.exe
 ├── app/
 │   ├── README.md
 │   ├── demo/       # Shared interface, model adapters and embedded model data
@@ -76,9 +76,9 @@ ge2340_data_package_v3/
 └── reference_zh/   # Chinese reference materials for the owner
 ```
 
-**For presentations:** download the [Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.0.0/GE2340-Model-Explorer-1.0.0-Windows.exe) from [Release v1.0.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.0.0) and double-click it. It includes the runtime and model and works offline. Alternatively, open [app/demo/index.html](app/demo/index.html) in a browser. The previous root-level `demo/` path has moved to `app/demo/`.
+**For presentations:** download the [Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Windows.exe) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0) and double-click it. It includes the runtime and model and works offline. Alternatively, open [app/demo/index.html](app/demo/index.html) in a browser. The previous root-level `demo/` path has moved to `app/demo/`.
 
-**For interface or classifier work:** edit `app/demo/`. The current app runs linear regression and maps its prediction to a relative group and an estimated position within the training set. Softmax is not yet connected. Follow the [model adapter contract](app/demo/README.md#adding-jeffreys-softmax-classifier) to add the trained classifier.
+**For interface or classifier work:** edit `app/demo/`. The current app defaults to Jeffrey's classifier, showing a relative group and class probabilities. Linear regression remains available with its estimated position in the training set. See the [classifier integration guide](app/demo/README.md#jeffreys-grade-classifier) for parameter export and verification.
 
 **For window controls or packaging:** use `app/desktop/`. From the package root, run:
 
@@ -94,7 +94,9 @@ After updating model outputs, run these commands from the package root before re
 
 ```powershell
 python app/demo/export_model.py
+python app/demo/export_classifier.py
 node app/demo/test-models.cjs
+node app/demo/test-classifier.cjs
 ```
 
 See [app/README.md](app/README.md) for the application overview and [app/desktop/README.md](app/desktop/README.md) for packaging details.

@@ -1,3 +1,4 @@
 # Preserve supplied file bytes for SHA-256 verification.
 * -text
 GE2340-Model-Explorer-1.0.0-Windows.exe filter=lfs diff=lfs merge=lfs -text
+GE2340-Model-Explorer-1.1.0-Windows.exe filter=lfs diff=lfs merge=lfs -text

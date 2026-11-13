@@ -4,9 +4,9 @@ The Windows app wraps the existing [model explorer](../demo/README.md) with a cu
 
 ## Run the packaged app
 
-Download [GE2340-Model-Explorer-1.0.0-Windows.exe](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.0.0/GE2340-Model-Explorer-1.0.0-Windows.exe) from [Release v1.0.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.0.0), or use the local copy in the main `ge2340_data_package_v3` folder. It is a Windows x64 portable app; no Node.js, Python, browser or separate model installation is needed. Its initial launch extracts the bundled runtime into a temporary directory.
+Download [GE2340-Model-Explorer-1.1.0-Windows.exe](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Windows.exe) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0), or use the local copy in the main `ge2340_data_package_v3` folder. It is a Windows x64 portable app; no Node.js, Python, browser or separate model installation is needed. Its initial launch extracts the bundled runtime into a temporary directory.
 
-The app includes the same fitted model, preprocessing reference and grade display as the browser demo. Predictions work offline. The source attribution link opens in the default browser when clicked.
+The app includes both fitted models and the same preprocessing and result displays as the browser demo. It opens with Jeffrey's classifier; the selector also provides linear regression. Predictions work offline. The source attribution link opens in the default browser when clicked.
 
 The executable is not code-signed. A Windows reputation prompt may identify the publisher as unknown.
 
@@ -39,6 +39,6 @@ Edit the shared files in `../demo/`, following its adapter contract, then rebuil
 
 `npm run test:desktop` checks the custom title bar, menu removal, isolated renderer, prediction updates and all window buttons. Its default output is `smoke-results/`; pass `-- --smoke-output=<absolute-path>` to choose another directory. The same `--smoke-test` and `--smoke-output` arguments work on the packaged executable.
 
-Numerical checks remain available from the package root with `node app/demo/test-models.cjs`.
+Numerical checks are available from the package root with `node app/demo/test-models.cjs` and `node app/demo/test-classifier.cjs`. Before rebuilding an updated classifier, run `python app/demo/export_classifier.py` with the project dependencies installed.
 
 Implementation references: [Electron custom title bars](https://www.electronjs.org/docs/latest/tutorial/custom-title-bar) and [Electron security guidance](https://www.electronjs.org/docs/latest/tutorial/security).

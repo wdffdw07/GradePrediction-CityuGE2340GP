@@ -1,12 +1,14 @@
 GE2340 Model Explorer — Windows 免安装版
 
-双击 GE2340-Model-Explorer-1.0.0-Windows.exe 即可运行。
+双击 GE2340-Model-Explorer-1.1.0-Windows.exe 即可运行。
 首次打开需要几秒钟解压内置运行时，无需安装 Node.js 或 Python。
 
 顶部为 GE2340 自定义标题栏，可拖动窗口。
 右上角依次为：最小化、最大化/还原、关闭。
 
 预测模型和数据已内置，断网也可演示。
+默认展示 Jeffrey 的分类器，显示相对分组及各组概率；右上角可切换到线性回归。
+分类概率不是排名百分比；线性回归仍显示训练集内的估计位置。
 本程序没有代码签名，Windows 可能显示“未知发布者”。
 
 后续更新分类器：修改代码包中的 app/demo，再按 app/desktop/README.md 重新打包。

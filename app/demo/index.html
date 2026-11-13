@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171717">
-  <meta name="description" content="Explore the GE2340 linear regression model with a 24-hour activity schedule.">
+  <meta name="description" content="Explore GE2340 regression and classification models with a 24-hour activity schedule.">
   <title>GE2340 · A day, in perspective</title>
   <link rel="stylesheet" href="styles.css?v=light-result">
   <link rel="stylesheet" href="desktop.css">
@@ -13,7 +13,8 @@
   <script src="model-data.js" defer></script>
   <script src="model-registry.js" defer></script>
   <script src="linear-adapter.js" defer></script>
-  <!-- Add a trained classifier adapter here, before app.js. See README.md. -->
+  <script src="classifier-data.js" defer></script>
+  <script src="classifier-adapter.js" defer></script>
   <script src="app.js?v=activity-colors" defer></script>
 </head>
 <body>
@@ -49,17 +50,17 @@
               <p class="mapping-note">Project-defined A/B/C/D/F bands · F is the lowest relative group.</p>
               <details class="numeric-details"><summary>View numeric estimate & baseline</summary><div class="raw-estimate"><span>Predicted Grades (original units)</span><strong id="prediction-value">—</strong></div><div id="baseline-comparison" class="baseline-comparison"><div><span>Training-mean baseline</span><strong id="baseline-value">—</strong></div><div><span>Prediction − baseline</span><strong id="baseline-delta">—</strong></div></div></details>
             </div>
-            <div id="classification-result" hidden><div id="class-value" class="score group-result">—</div><p class="class-note">Project-defined relative group</p><div id="probabilities"></div></div>
+            <div id="classification-result" hidden><div id="class-value" class="score group-result">—</div><p class="class-note">Project-defined relative group · F is the lowest group</p><div id="probabilities"></div><p class="mapping-note">Model probabilities · not a percentile rank</p></div>
             <p id="result-message" class="result-message" role="status" aria-live="polite"></p>
             <div id="snapshot" class="snapshot"></div>
           </div>
           <div class="performance-heading"><h3>Model performance</h3><span>HELD-OUT TEST SET · 400 RECORDS</span></div>
           <div id="metrics" class="metric-grid"></div>
-          <div class="comparison-note" id="comparison-note"><span class="note-symbol" aria-hidden="true">↘</span><p><strong id="mae-improvement">34.2% lower test MAE</strong><span>than predicting the training mean for everyone.</span></p></div>
+          <div class="comparison-note" id="comparison-note"><span class="note-symbol" aria-hidden="true">↘</span><p><strong id="mae-improvement">34.2% lower test MAE</strong><span id="comparison-detail">than predicting the training mean for everyone.</span></p></div>
           <p class="performance-footnote">These metrics describe the full test set, not the accuracy of this individual prediction.</p>
         </section>
       </div>
-      <details class="method"><summary><span><span class="eyebrow">BEHIND THE PREDICTION</span><span class="method-title">What this model uses</span></span><span aria-hidden="true" class="plus">+</span></summary><div class="method-content"><div><h3>A fixed day, four fitted inputs</h3><p>The linear model uses study, extracurricular, sleep and social hours. Physical activity is the reference activity: all five durations sum to 24 hours. Changing a duration reallocates time within that day.</p></div><div><h3>Existing fitted model</h3><p>Ordinary least squares, fitted on 1,200 training records. The 400 validation and 400 test records use the fixed project split. Predictions retain the original Grades units and are not clipped.</p></div><div><h3>Reading the relative grade</h3><p>The regression estimate is mapped to the fixed training-derived grade bands. “Top” is the percentage of training grades above the estimate, with half of ties counted. It is a relative position within these 1,200 records, not a school-wide or cross-school ranking. The underlying output is a prediction for this dataset. Activity–grade relationships are associations, not causal effects. The data's original collection method and whether records are real or synthetic remain unverified.</p></div><div><h3>Next model</h3><p>Softmax classification can use the same activity inputs to return relative A/B/C/D/F bands. Its trained model is not yet connected. F denotes the lowest relative group, not an official failure category.</p></div></div></details>
+      <details class="method"><summary><span><span class="eyebrow">BEHIND THE PREDICTION</span><span class="method-title">What this model uses</span></span><span aria-hidden="true" class="plus">+</span></summary><div class="method-content" id="method-content"></div></details>
     </main>
     <footer><span>GE2340 <span class="footer-divider">/</span> Data & baseline demonstration</span><span>Source: <a href="https://www.kaggle.com/datasets/charlottebennett1234/lifestyle-factors-and-their-impact-on-students" target="_blank" rel="noopener noreferrer">Charlotte Bennett1234 · Kaggle v3 ↗</a></span></footer>
     <noscript>This demo requires JavaScript to calculate predictions.</noscript>

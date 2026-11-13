@@ -274,6 +274,7 @@ def run_classifier(out, proc, sets):
 
     pd.DataFrame(class_metrics).to_csv(out / 'sgd_classification_metrics.csv', index=False)
     print("SGD Classifier evaluation complete and metrics saved.")
+    return pipeline  # Expose the fitted model for application export.
 
 if __name__=='__main__':
     p=argparse.ArgumentParser()

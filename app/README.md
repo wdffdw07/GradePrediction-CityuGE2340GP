@@ -1,13 +1,13 @@
 # GE2340 Application
 
-This directory contains the browser interface and desktop wrapper.
+This directory contains the shared browser interface and desktop wrapper for linear regression and Jeffrey's grade classifier. The classifier is selected by default; use the model selector to compare both models.
 
 | Folder | Purpose | Entry point |
 |---|---|---|
 | [demo/](demo/README.md) | Shared interface, prediction adapters and model data | [Open the browser demo](demo/index.html) |
 | [desktop/](desktop/README.md) | Electron window controls, icon and Windows packaging | Run `npm start` from `app/desktop/` |
 
-For presentations, download the [portable Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.0.0/GE2340-Model-Explorer-1.0.0-Windows.exe) from [Release v1.0.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.0.0) and run it. A local copy is also available in the package root.
+For presentations, download the [portable Windows executable](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/download/v1.1.0/GE2340-Model-Explorer-1.1.0-Windows.exe) from [Release v1.1.0](https://github.com/wdffdw07/GradePrediction-CityuGE2340GP/releases/tag/v1.1.0) and run it. A local copy is also available in the package root.
 
 Edit the interface or add a trained classifier in `app/demo/`. Edit window behavior and packaging in `app/desktop/`. Both runtimes use the same interface. Existing model outputs remain in the package root's `outputs/` folder.
 
@@ -15,7 +15,9 @@ From the package root, refresh the embedded model and verify predictions:
 
 ```powershell
 python app/demo/export_model.py
+python app/demo/export_classifier.py
 node app/demo/test-models.cjs
+node app/demo/test-classifier.cjs
 ```
 
 From the package root, set up and run the desktop app:

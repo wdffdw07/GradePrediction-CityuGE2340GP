@@ -46,10 +46,11 @@
     $('model').append(option);
   }
   if (![...models.values()].some(model => model.task === 'classification')) {
-    const option = element('option', '', 'Softmax classifier · not connected');
+    const option = element('option', '', 'Grade classifier · not connected');
     option.disabled = true;
     $('model').append(option);
   }
+  if (models.has('sgd-classifier')) $('model').value = 'sgd-classifier';
   function inputs() {
     return Object.fromEntries(fields.map((field, i) => [field.key, numericInputs[i].value === '' ? NaN : Number(numericInputs[i].value)]));
   }
@@ -109,9 +110,30 @@
     }
     document.querySelector('.performance-heading').hidden = !model.metrics?.length;
     document.querySelector('.performance-footnote').hidden = !model.metrics?.length;
-    $('comparison-note').hidden = model.id !== 'linear-regression';
+    $('comparison-note').hidden = !['linear-regression', 'sgd-classifier'].includes(model.id);
     const improvement = (1 - GE2340_DATA.metrics.linear_regression.MAE / GE2340_DATA.metrics.mean_baseline.MAE) * 100;
     $('mae-improvement').textContent = improvement.toFixed(1) + '% lower test MAE';
+    $('comparison-detail').textContent = 'than predicting the training mean for everyone.';
+    if (model.id === 'sgd-classifier') {
+      $('mae-improvement').textContent = (100 * GE2340_CLASSIFIER.metrics.test.accuracy).toFixed(2) + '% test accuracy';
+      $('comparison-detail').textContent = 'compared with ' + (100 * GE2340_CLASSIFIER.baseline.accuracy).toFixed(2) + '% for always predicting group B.';
+    }
+    const method = model.task === 'classification' ? [
+      ['Five activity inputs', 'The classifier uses all five daily durations. Squared and interaction terms expand them into 20 features, standardized using the fitted training parameters.'],
+      ["Jeffrey's fitted classifier", 'An SGD classifier with one-vs-rest logistic loss and class weights, fitted on 1,200 training records. Validation and test results use the fixed project split.'],
+      ['Reading the result', 'The model predicts a relative A/B/C/D/F group. The bars show normalized class probabilities. They do not locate an individual within a group or estimate a precise training-set percentile. F denotes the lowest relative group.']
+    ] : [
+      ['A fixed day, four fitted inputs', 'The linear model uses study, extracurricular, sleep and social hours. Physical activity is the reference activity under the fixed 24-hour total.'],
+      ['Existing fitted model', 'Ordinary least squares, fitted on 1,200 training records. Predictions retain the original Grades units and are not clipped.'],
+      ['Reading the relative grade', 'The regression estimate is mapped to the fixed training-derived bands. The top percentage counts training grades above the estimate, with half of ties counted. It estimates position within the training set.']
+    ];
+    method.push(['Dataset context', 'Both models describe associations within this dataset. The groups are not official school grades, and changing an activity is not evidence of a causal effect. The original collection method and whether the records are real or synthetic remain unverified.']);
+    $('method-content').replaceChildren();
+    for (const [title, text] of method) {
+      const block = element('div');
+      block.append(element('h3', '', title), element('p', '', text));
+      $('method-content').append(block);
+    }
     $('prediction-value').textContent = '—';
     $('relative-grade').textContent = '—';
     $('top-percent').textContent = '—';
@@ -156,8 +178,11 @@
       } else {
         $('class-value').textContent = groupLabel(result.label);
         $('probabilities').replaceChildren();
-        model.classLabels.forEach((label, i) => {
+        GE2340_DATA.gradeBands.labels_low_to_high.forEach(label => {
+          const i = model.classLabels.indexOf(label);
           const row = element('div', 'prob-row');
+          if (label === result.label) row.setAttribute('aria-current', 'true');
+          row.title = groupLabel(label);
           const track = element('div', 'prob-track');
           const fill = element('div', 'prob-fill');
           fill.style.width = result.probabilities[i] * 100 + '%';
@@ -182,7 +207,7 @@
   }
   $('prediction-form').addEventListener('submit', event => { event.preventDefault(); run(); });
   $('auto-balance').addEventListener('change', changed);
-  $('model').addEventListener('change', () => { setModel(); updateBudget(); });
+  $('model').addEventListener('change', () => { setModel(); updateBudget(); if (!busy) run(); });
   $('reset').addEventListener('click', () => {
     numericInputs.forEach((input, i) => { input.value = String(initial[i]); sliders[i].value = String(initial[i]); });
     $('auto-balance').checked = true;
