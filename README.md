@@ -2,6 +2,8 @@
 
 **English** | [简体中文](reference_zh/README.zh-CN.md) | [繁體中文（香港）](reference_zh/README.zh-HK.md)
 
+> **[Try the online demo](https://wdffdw07.github.io/GradePrediction-CityuGE2340GP/)** — Explore linear regression and Jeffrey's grade classifier in your browser. No installation required.
+
 This package contains the shared data, completed baseline experiments and materials for the team report. The shared data package is version 3; the current English analysis report is version 7. Documentation updated on 13 November 2026.
 
 ## Reading order

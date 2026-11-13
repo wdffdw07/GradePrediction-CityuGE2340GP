@@ -2,6 +2,8 @@
 
 [English](../README.md) | [简体中文](README.zh-CN.md) | **繁體中文（香港）**
 
+> **[開啟網上示範](https://wdffdw07.github.io/GradePrediction-CityuGE2340GP/)** — 在瀏覽器中試用線性回歸及 Jeffrey 的成績分類器，毋須安裝。
+
 本資料包包含組員共用的數據、已完成的基線實驗，以及撰寫小組報告所需的材料。共用數據包為 v3，目前的英文分析報告為 v7。文件更新日期：2026 年 11 月 13 日。
 
 ## 閱讀次序
